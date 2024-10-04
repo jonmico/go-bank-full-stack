@@ -4,8 +4,8 @@ import "example.com/go-bank-server/db"
 
 type User struct {
 	ID       int64
-	email    string `binding: required`
-	password string `binding: required`
+	Email    string `binding: required`
+	Password string `binding: required`
 }
 
 func (u *User) Save() error {
@@ -19,7 +19,7 @@ func (u *User) Save() error {
 
 	defer statement.Close()
 
-	result, err := statement.Exec(u.email, u.password)
+	result, err := statement.Exec(u.Email, u.Password)
 
 	if err != nil {
 		return err
