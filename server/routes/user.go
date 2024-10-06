@@ -46,5 +46,16 @@ func getAllUsers(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "something went wrong"})
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "success", "users": users})
+	var usersRes []userResponse
+
+	for _, user := range *users {
+		u := userResponse{
+			user.ID,
+			user.Email,
+		}
+
+		usersRes = append(usersRes, u)
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "success", "users": usersRes})
 }

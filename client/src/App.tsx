@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react';
 import { GlobalStyles } from './styles/global-styles';
+import styled from 'styled-components';
+import Header from './components/header';
+
+const AppContainer = styled.div`
+  width: 80%;
+  margin: auto;
+`;
+
+const AppLayout = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    'nav'
+    'body';
+`;
 
 interface User {
-  ID: number;
-  Email: string;
-  Password: string;
+  userId: number;
+  email: string;
 }
 
 export default function App() {
@@ -38,11 +52,22 @@ export default function App() {
   }
 
   return (
-    <div>
+    <>
       <GlobalStyles />
-      <h1>Go Bank!</h1>
-      {error ? <div>Error: {error}</div> : null}
-      {users ? users.map((u) => <div>{u.Email}</div>) : null}
-    </div>
+
+      <AppLayout>
+        <Header />
+        <AppContainer>
+          {error ? <div>Error: {error}</div> : null}
+          {users ? (
+            <div>
+              {users.map((u) => (
+                <div key={u.userId}>{u.email}</div>
+              ))}
+            </div>
+          ) : null}
+        </AppContainer>
+      </AppLayout>
+    </>
   );
 }
