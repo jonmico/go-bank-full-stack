@@ -6,4 +6,5 @@ import (
 
 func RegisterRoutes(server *gin.Engine) {
 	server.POST("/register", register)
+	server.GET("/", getAllUsers)
 }

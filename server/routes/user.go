@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	"example.com/go-bank-server/models"
@@ -35,4 +36,15 @@ func register(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{"message": "user created", "userData": userRes})
+}
+
+func getAllUsers(c *gin.Context) {
+	users, err := models.GetAllUsers()
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "something went wrong"})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "success", "users": users})
 }
