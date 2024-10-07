@@ -9,8 +9,8 @@ export default function Nav() {
   return (
     <nav>
       <NavList>
-        <li>Login</li>
-        <li>Register</li>
+        <div>Login</div>
+        <div>Register</div>
       </NavList>
     </nav>
   );
