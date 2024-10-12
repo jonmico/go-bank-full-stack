@@ -14,14 +14,28 @@ async function homeLoader() {
   return data;
 }
 
+interface Error {
+  email?: string;
+  password?: string;
+}
+
 async function homeAction({ request }: { request: Request }) {
   const formData = await request.formData();
+  const errors: Error = {};
 
   const email = formData.get('email');
   const password = formData.get('password');
 
-  if (!email || !password) {
-    return { error: 'Email or password invalid' };
+  if (!email || typeof email !== 'string') {
+    errors.email = 'Email not provided.';
+  }
+
+  if (!password || typeof password !== 'string') {
+    errors.password = 'Password not provided.';
+  }
+
+  if (errors.email || errors.password) {
+    return errors;
   }
 
   const res = await fetch('http://localhost:3000/register', {
