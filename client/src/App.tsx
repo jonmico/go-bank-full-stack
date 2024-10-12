@@ -14,6 +14,21 @@ async function homeLoader() {
   return data;
 }
 
+async function homeAction() {
+  const res = await fetch('http://localhost:3000/register', {
+    method: 'POST',
+    body: JSON.stringify({
+      Email: 'testemail@gmail.com',
+      Password: 'notsecure',
+    }),
+  });
+
+  const data: { message: string; user: { ID: string; Email: string } } =
+    await res.json();
+
+  return data;
+}
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -22,6 +37,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />,
         loader: homeLoader,
+        action: homeAction,
       },
     ],
   },

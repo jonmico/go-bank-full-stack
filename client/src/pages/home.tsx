@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
 
 interface User {
   userId: number;
@@ -16,6 +16,11 @@ export default function Home() {
       {data.users.map((u) => (
         <div key={u.userId}>{u.email}</div>
       ))}
+
+      <h2>This is a form to create a new user</h2>
+      <Form method='POST'>
+        <button type='submit'>Submit!</button>
+      </Form>
     </div>
   );
 }
