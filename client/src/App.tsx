@@ -14,19 +14,28 @@ async function homeLoader() {
   return data;
 }
 
-async function homeAction() {
+async function homeAction({ request }: { request: Request }) {
+  const formData = await request.formData();
+
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  if (!email || !password) {
+    return { error: 'Email or password invalid' };
+  }
+
   const res = await fetch('http://localhost:3000/register', {
     method: 'POST',
     body: JSON.stringify({
-      Email: 'testemail@gmail.com',
-      Password: 'notsecure',
+      Email: email,
+      Password: password,
     }),
   });
 
-  const data: { message: string; user: { ID: string; Email: string } } =
+  const resData: { message: string; user: { ID: string; Email: string } } =
     await res.json();
 
-  return data;
+  return resData;
 }
 
 const router = createBrowserRouter([
