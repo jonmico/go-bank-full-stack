@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from './app-layout';
 import Home from './pages/home';
+import LoginPage from './pages/login';
+import { loginAction } from './actions/login';
 
 interface User {
   userId: number;
@@ -61,6 +63,11 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: homeLoader,
         action: homeAction,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+        action: loginAction,
       },
     ],
   },

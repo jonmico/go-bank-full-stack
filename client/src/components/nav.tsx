@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavList = styled.ul`
@@ -9,7 +10,7 @@ export default function Nav() {
   return (
     <nav>
       <NavList>
-        <div>Login</div>
+        <Link to={'login'}>Login</Link>
         <div>Register</div>
       </NavList>
     </nav>
