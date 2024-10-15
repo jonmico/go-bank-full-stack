@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { StyledLink } from './ui/styled-link';
 
 const NavList = styled.ul`
   display: flex;
@@ -10,7 +10,7 @@ export default function Nav() {
   return (
     <nav>
       <NavList>
-        <Link to={'login'}>Login</Link>
+        <StyledLink to={'login'}>Login</StyledLink>
         <div>Register</div>
       </NavList>
     </nav>
