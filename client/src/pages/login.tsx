@@ -8,7 +8,7 @@ interface LoginLoaderData {
 }
 
 export default function LoginPage() {
-  const actionData = useActionData() as LoginLoaderData;
+  const actionData = useActionData() as LoginLoaderData | undefined;
 
   return (
     <div>
@@ -29,4 +29,10 @@ export default function LoginPage() {
       </Form>
     </div>
   );
+}
+
+interface ErrorProps {}
+
+function Error() {
+  return <div></div>;
 }
