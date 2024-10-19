@@ -11,7 +11,7 @@ export default function Nav() {
     <nav>
       <NavList>
         <StyledLink to={'login'}>Login</StyledLink>
-        <div>Register</div>
+        <StyledLink to={'register'}>Register</StyledLink>
       </NavList>
     </nav>
   );

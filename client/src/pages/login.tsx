@@ -1,14 +1,16 @@
 import { Form, useActionData } from 'react-router-dom';
 
-interface LoginLoaderData {
-  error: {
-    email?: string;
-    password?: string;
-  };
-}
+type LoginLoaderData =
+  | {
+      error: {
+        email?: string;
+        password?: string;
+      };
+    }
+  | undefined;
 
 export default function LoginPage() {
-  const actionData = useActionData() as LoginLoaderData | undefined;
+  const actionData = useActionData() as LoginLoaderData;
 
   return (
     <div>
@@ -29,10 +31,4 @@ export default function LoginPage() {
       </Form>
     </div>
   );
-}
-
-interface ErrorProps {}
-
-function Error() {
-  return <div></div>;
 }

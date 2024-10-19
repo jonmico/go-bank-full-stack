@@ -26,7 +26,7 @@ func register(c *gin.Context) {
 	err = user.Save()
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "could not create user"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Error creating user. Email is already in use."})
 		return
 	}
 
