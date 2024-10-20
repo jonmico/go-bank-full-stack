@@ -19,14 +19,14 @@ func register(c *gin.Context) {
 	err := c.ShouldBindBodyWithJSON(&user)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "could not parse request data"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "could not parse request data"})
 		return
 	}
 
 	err = user.Save()
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Error creating user. Email is already in use."})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating user. Email is already in use."})
 		return
 	}
 
@@ -43,7 +43,7 @@ func getAllUsers(c *gin.Context) {
 
 	if err != nil {
 		fmt.Println(err)
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "something went wrong"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "something went wrong"})
 	}
 
 	var usersRes []userResponse
