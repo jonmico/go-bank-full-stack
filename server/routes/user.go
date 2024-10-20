@@ -37,7 +37,6 @@ func register(c *gin.Context) {
 	}
 
 	token, err := utils.GenerateToken(user.Email, user.ID)
-	fmt.Println(token)
 
 	if err != nil {
 		fmt.Println(err)
@@ -45,6 +44,7 @@ func register(c *gin.Context) {
 		return
 	}
 
+	c.SetCookie("token", token, 3600*24, "", "", false, false)
 	c.JSON(http.StatusCreated, gin.H{"message": "user created", "userData": userRes, "token": token})
 }
 

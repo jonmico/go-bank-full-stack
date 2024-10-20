@@ -12,6 +12,10 @@ export async function register(email: string, password: string) {
     fetch('http://localhost:3000/register', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
   );
 

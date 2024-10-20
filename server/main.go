@@ -22,6 +22,7 @@ func main() {
 
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowCredentials = true
 	server.Use(cors.New(config))
 
 	routes.RegisterRoutes(server)
