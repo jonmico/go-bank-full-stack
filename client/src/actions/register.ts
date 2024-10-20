@@ -24,7 +24,9 @@ export async function registerAction({ request }: { request: Request }) {
     errors.errors.password = 'Please provide a password.';
   }
 
-  if (Object.keys(errors).length) {
+  console.log(errors);
+
+  if (Object.keys(errors.errors).length) {
     return errors;
   }
 

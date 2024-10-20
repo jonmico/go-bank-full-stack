@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"example.com/go-bank-server/models"
+	"example.com/go-bank-server/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -35,7 +36,16 @@ func register(c *gin.Context) {
 		user.Email,
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "user created", "userData": userRes})
+	token, err := utils.GenerateToken(user.Email, user.ID)
+	fmt.Println(token)
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating JWT.", "err": err})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"message": "user created", "userData": userRes, "token": token})
 }
 
 func getAllUsers(c *gin.Context) {
